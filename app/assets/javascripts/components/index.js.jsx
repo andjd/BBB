@@ -14,7 +14,6 @@
 
     componentDidMount: function () {
       BBB.BenchStore.addChangeHandler( this._onChange);
-      BBB.fetchBenches();
     },
 
     render: function () {

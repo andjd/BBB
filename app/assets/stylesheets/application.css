@@ -17,4 +17,9 @@
 .map {
   width: 500px;
   height: 500px;
+  display: inline-block;
+}
+
+ul {
+  display: inline-block;
 }

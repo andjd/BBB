@@ -1,6 +1,6 @@
 class BenchesController < ApplicationController
   def index
-    b_all = Bench.all
+    b_all = Bench.all_in_rectangle(params[:north],params[:south],params[:east],params[:west])
     render json: b_all
   end
 
