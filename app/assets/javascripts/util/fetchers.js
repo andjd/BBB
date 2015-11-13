@@ -1,19 +1,19 @@
 (function(root) {
   'use strict';
 
-  _raiseFailAlert = function (source) {
+  var _raiseFailAlert = function (source) {
     return (function(_,__,error){ alert(source + "returned an error:" + error);});
   };
-  var BBB = root.BBB = root.BBB || {};
+  var BBB = root.BBB = (root.BBB || {});
 
     BBB.fetchBenches = function () {
       $.ajax("/benches", {
         method: "get",
         dataType: "json",
-        success: BBB.Actions.getAllBenches(data)
+        success: BBB.Actions.getAllBenches,
         error: _raiseFailAlert("fetch benches")
 
-      })
+      });
     };
 
 
