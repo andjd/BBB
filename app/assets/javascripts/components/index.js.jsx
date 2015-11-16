@@ -19,15 +19,19 @@
     render: function () {
 
       return (
-        <ul>
-          { this.state.benches.map(function(b){
-            return(
-            <li key={b.lat}>
-              <h5> {b.description} </h5>
-            </li>
-          );
-        })}
-        </ul>
+        <div className="index">
+          <ul>
+            { this.state.benches.map(function(b){
+              return(
+              <li key={b.lat}>
+                <h5> {b.description} </h5>
+              </li>
+            );
+          })}
+          </ul>
+          <BBB.CapacityFilter />
+        </div>
+
       );
     }
 

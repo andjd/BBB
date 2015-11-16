@@ -20,6 +20,8 @@
   display: inline-block;
 }
 
-ul {
+.index {
+  height: 500px;
   display: inline-block;
+  overflow: scroll;
 }

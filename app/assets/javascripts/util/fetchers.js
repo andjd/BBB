@@ -6,13 +6,14 @@
   };
   var BBB = root.BBB = (root.BBB || {});
 
-    BBB.fetchBenches = function (bounds) {
+    BBB.fetchBenches = function (bounds, capacity_range, callback) {
+
       $.ajax("/benches", {
         method: "get",
         dataType: "json",
-        data: {north: bounds.n, east: bounds.e, south: bounds.s, west: bounds.w},
+        data: {bounds: bounds, capacity_range: capacity_range},
         contentType: 'json',
-        success: BBB.Actions.getBenches,
+        success: callback,
         error: _raiseFailAlert("fetch benches")
 
       });

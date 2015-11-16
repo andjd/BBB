@@ -4,28 +4,51 @@
 
   var _filters = {};
 
-  var FilterStore = BBB.FilterStore = $.extend({}, EventEmitter.prototype, {
-
-  const UPDATE_BOUNDS_EVENT = "UPDATE_BOUNDS_EVENT"
-
-
-  setBounds: function(bounds) {
-
-
+  var _setFilters = function(things) {
+    Object.keys(things).forEach( function (thing) {
+      _filters[thing] = things[thing];
+    });
   };
 
-  dispatcherID: BBB.AppDispatcher.register(function (payload) {
-    switch (payload.actionType) {
-      case BBB.Constants.UPDATE_BOUNDS:
-        _setBounds(payload.bounds);
-        BBB.FilterStore.emit(UPDATE_BOUNDS_EVENT);
-      break;
+
+  const UPDATE_EVENT = "UPDATE_EVENT";
+
+  var FilterStore = BBB.FilterStore = $.extend({}, EventEmitter.prototype, {
+
+    all: function () {
+      _filters.slice();
+    },
+
+    capacityRange: function () {
+      return {max: _filters.max, min: _filters.min};
+    },
+
+    bounds: function () {
+      return {north: _filters.north, east: _filters.east, south: _filters.south, west: _filters.west};
+    },
 
 
-    }
+   addUpdateHandler: function (callback) {
+     this.on(UPDATE_EVENT, callback);
+   },
+
+     dispatcherID: BBB.AppDispatcher.register(function (payload) {
+      switch (payload.actionType) {
+        case BBB.Constants.UPDATE_BOUNDS:
+          _setFilters(payload.bounds);
+          BBB.FilterStore.emit(UPDATE_EVENT);
+        break;
+
+        case BBB.Constants.UPDATE_CAPACITY_RANGE:
+          _setFilters(payload.capacityRange);
+          BBB.FilterStore.emit(UPDATE_EVENT)
+        break;
+
+
+      }
+    })
+
   });
-
-  })
 
 
 
