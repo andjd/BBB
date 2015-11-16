@@ -8,6 +8,11 @@
     _benches = new_benches;
   };
 
+  var _addBench = function (new_bench) {
+    //consider addiing logic to remove if bench is already in store
+    _benches.push(new_bench);
+  };
+
   var _parseDispatch = function (payload) {
     if (payload.actionType === BBB.Constants.ALL_BENCHES_RECD) {
       _reset(payload.benches);
@@ -32,6 +37,12 @@
           _reset(payload.benches);
           BBB.BenchStore.emit(CHANGE_EVENT);
         break;
+
+        case BBB.Constants.ONE_BENCH_RECD:
+          _addBench(payload.bench);
+          BBB.BenchStore.emit(CHANGE_EVENT);
+          break;
+          
       }
     })
 

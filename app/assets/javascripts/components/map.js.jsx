@@ -30,7 +30,8 @@
         };
         this.map = new google.maps.Map(map, mapOptions);
         BBB.BenchStore.addChangeHandler(this._addBenches);
-        this.map.addListener ("idle", BBB.fetchBenches.bind(this.map));
+        this.map.addListener ("idle", BBB.fetchBenches.bind(this.map))
+        this.map.addListener ("click", this.props.onClick);
       },
 
       render: function () {

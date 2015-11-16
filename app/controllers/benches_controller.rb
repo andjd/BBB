@@ -5,6 +5,8 @@ class BenchesController < ApplicationController
   end
 
   def create
+
+    puts params
     b = Bench.create(bench_params)
 
     if b.persisted?
@@ -16,6 +18,6 @@ class BenchesController < ApplicationController
   end
 
   def bench_params
-    params.require(:bench).permit(:description, :lat, :lon)
+    params.require(:bench).permit(:description, :capacity, :lat, :lon)
   end
 end
