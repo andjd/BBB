@@ -12,6 +12,8 @@
       _addBenches: function() {
 
         this.map && BBB.BenchStore.all().forEach(function (bench) {
+          map.clearMarkers();
+          this.markers = [];
           this.markers.push(new google.maps.Marker({
             map: this.map,
             title: bench.description,
@@ -29,8 +31,7 @@
           zoom: 15
         };
         this.map = new google.maps.Map(map, mapOptions);
-        BBB.BenchStore.addChangeHandler(this._addBenches);
-        BBB.FilterStore.addUpdateHandler(this._addBenches);
+        BBB.BenchStore.addChangeHandler(this._updateBenches);
         this.map.addListener ("idle", BBB.Actions.updateBounds(this.map));
         this.map.addListener ("click", this.props.onClick);
 

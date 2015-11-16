@@ -20,7 +20,7 @@ var RR = ReactRouter;
 
   var routes = (
       <RR.Route path="/" component={App}>
-        <RR.IndexRoute component={Search}/>
+        <RR.IndexRoute component={Search} />
         <RR.Route path="benches/new" component={BBB.BenchForm} />
       </RR.Route>
 
